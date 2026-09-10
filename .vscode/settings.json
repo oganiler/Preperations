@@ -1,0 +1,13 @@
+{
+  // IntelliSense: let CMake Tools answer per-file, with the generated database as fallback.
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+  "C_Cpp.default.cppStandard": "c++20",
+
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.configureOnOpen": true,
+
+  "files.associations": { "*.hpp": "cpp" },
+  "C_Cpp.clang_format_style": "file",
+  "editor.formatOnSave": false
+}
