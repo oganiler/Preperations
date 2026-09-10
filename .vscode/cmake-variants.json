@@ -1,0 +1,26 @@
+{
+  "buildType": {
+    "default": "debug-asan",
+    "description": "Drill build configuration",
+    "choices": {
+      "debug-asan": {
+        "short": "Debug+ASan",
+        "long": "-O1 -g with ASan/UBSan - matches run_drill.sh default",
+        "buildType": "Debug",
+        "settings": { "DRILL_SANITIZE": "ON" }
+      },
+      "reldbg": {
+        "short": "RelWithDebInfo",
+        "long": "-O2 -g, no sanitizers - debug an optimizer-only bug",
+        "buildType": "RelWithDebInfo",
+        "settings": { "DRILL_SANITIZE": "OFF" }
+      },
+      "release": {
+        "short": "Release",
+        "long": "-O3 -DNDEBUG, no sanitizers - the only valid timing build",
+        "buildType": "Release",
+        "settings": { "DRILL_SANITIZE": "OFF" }
+      }
+    }
+  }
+}

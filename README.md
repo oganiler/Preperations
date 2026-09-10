@@ -9,16 +9,17 @@ spaced-repetition ledger it must consult before choosing anything.
 ```bash
 claude                                   # in the repo root
 
-> generate today's session               # Claude reads PROGRESS.md, scaffolds days/<date>_<slug>/
+> generate today's session               # Claude reads PROGRESS.md, scaffolds days/<cat>/<date>_<slug>/
 # read fact.md, answer the question out loud
 # read problem.md, write solution.cpp    # 25-40 min, timer on
+# fill notes.md as you go                # approach BEFORE coding, delta AFTER reveal
 
-./scripts/run_drill.sh days/<date>_<slug>            # ASan + UBSan + tests
-./scripts/run_drill.sh days/<date>_<slug> --release  # timing number
+./scripts/run_drill.sh days/<cat>/<date>_<slug>            # ASan + UBSan + tests
+./scripts/run_drill.sh days/<cat>/<date>_<slug> --release  # timing number
 
 > review my solution                     # Claude interviews first, then reviews
-./scripts/reveal.sh days/<date>_<slug>   # only after you have attempted everything
-> update PROGRESS.md with today's result
+./scripts/reveal.sh days/<cat>/<date>_<slug>   # only after you have attempted everything
+> update PROGRESS.md, result: <x>, time: <n>, articulation: <y>
 ```
 
 ## Why solutions are sealed
@@ -43,6 +44,8 @@ PROGRESS.md            spaced-repetition ledger + coverage counters
 scripts/               new_day.sh · run_drill.sh · seal.sh · reveal.sh
 common/drill_test.hpp  dependency-free test harness
 templates/day_template scaffold copied into each new day
-days/<date>_<slug>/    fact.md · problem.md · problem.h · solution.cpp · tests.cpp
-                       python_transfer.md · drill.md · .sealed/
+days/<cat>/<date>_<slug>/
+                       fact.md · problem.md · problem.h · solution.cpp · tests.cpp
+                       python_transfer.md · drill.md · notes.md · .sealed/
+                       cat = leetcode | cpp-topic | cv
 ```

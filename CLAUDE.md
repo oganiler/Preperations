@@ -53,7 +53,34 @@ Everything hidden — fact answer, algorithm reasoning, reference solution, comp
 common mistakes, alternatives, Python answer, drill answers — goes into **one**
 `.sealed/session.md.b64`, written via `scripts/seal.sh`.
 
+`notes.md` is scaffolded empty and belongs to me, not you: my pre-coding approach, my
+predictions before the first build, my drill answers, and the post-reveal delta. Never
+write into it and never pre-fill it. Read it only when I point you at it — then use §2 and
+§3 in the interviewer round, because the gap between what I predicted and what the
+sanitizer found is the most useful thing in the session.
+
 ## Selection policy
+
+### Three categories — rotate across them
+
+Every C++ challenge belongs to exactly one, and lives in `days/<category>/<date>_<slug>/`:
+
+| Category | What it is |
+|----------|------------|
+| `leetcode` | Pure algorithm / data-structure practice. No domain dressing — call it what it is. |
+| `cpp-topic` | Ownership, RAII, lifetime, move semantics, templates, concurrency lead. The algorithm is secondary and may be trivial. |
+| `cv` | Perception, geometry, estimation. **Preferred** when the problem can carry a real algorithm *and* a real C++ design question at once. |
+
+Rotate across all three; `PROGRESS.md` holds the counters. `cv` is the favourite, but only
+when the domain is **load-bearing**: if you can rename the variables from radar/pixels to
+`a`/`b` and the problem is unchanged, it is a `leetcode` problem wearing a costume — either
+file it as `leetcode` honestly or pick a different problem. A stock problem with domain
+nouns sprinkled on it is the specific failure mode to avoid.
+
+Good `cv` shape, for calibration: robust geometric fitting (RANSAC-flavoured), point-cloud
+or mask clustering, calibration and projection maths, fixed-latency temporal buffers,
+detection post-processing. Note I have already been asked RANSAC circle-fitting in a real
+interview — adjacent problems are fair, that exact one is not.
 
 - Default **Medium**. Occasional **Easy** for speed practice. **Hard** only once `PROGRESS.md`
   shows two consecutive clean Mediums in that pattern family.
@@ -77,8 +104,11 @@ sensor fusion, calibration, BEV representations, occupancy, temporal filtering.
 
 ## Bookkeeping — do this at the end of every session
 
-Append a row to `PROGRESS.md`: date, concept, algorithm pattern, C++ topic, difficulty,
-my result (clean / hints needed / failed), and the two revisit dates.
+Append a row to `PROGRESS.md`: date, category, concept, algorithm pattern, C++ topic, difficulty,
+my result (clean / hints / failed), time in minutes on Part 2, articulation
+(fluent / halting / silent), and the two revisit dates. Take result, time and articulation
+from what I tell you — they are my self-assessment, from `notes.md` §7. Do not infer them,
+do not soften a `failed`, and do not record `clean` for a solution I could not narrate.
 Read `PROGRESS.md` **before** selecting anything.
 
 ## Industry relevance
@@ -91,7 +121,8 @@ Do not reproduce reported proprietary interview questions verbatim.
 ## Commands
 
 ```bash
-./scripts/new_day.sh <topic-slug>      # scaffold days/YYYY-MM-DD_<topic-slug>/
+./scripts/new_day.sh <cat> <slug>      # scaffold days/<cat>/YYYY-MM-DD_<slug>/
+                                       # cat: leetcode | cpp-topic | cv
 ./scripts/run_drill.sh <day-dir>       # build with sanitizers, run tests, run clang-tidy
 ./scripts/reveal.sh <day-dir>          # decode the sealed session — I run this, not you
 ./scripts/seal.sh <day-dir> <file.md>  # you run this to seal the answers
