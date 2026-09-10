@@ -1,0 +1,18 @@
+# Automotive-flavoured subset. AUTOSAR C++14 / MISRA C++ have no free clang-tidy mapping,
+# so this approximates the intent: no owning raw pointers, no implicit conversions,
+# no hidden allocation, const-correctness, deterministic bounds.
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  -modernize-use-trailing-return-type,
+  -readability-identifier-length,
+  -llvmlibc-*
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: file
