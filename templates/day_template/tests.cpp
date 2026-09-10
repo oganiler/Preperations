@@ -4,7 +4,7 @@
 #include <new>
 #include <random>
 
-#include "common/drill_test.hpp"
+#include "drill_test.hpp"
 
 namespace {
 std::size_t g_alloc_count = 0U;

@@ -4,3 +4,7 @@ build/
 compile_commands.json
 # never commit a decoded solution
 days/*/SOLUTION.md
+
+# editor Run-button outputs
+days/*/*/tests
+days/*/*/solution

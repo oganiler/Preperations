@@ -1,12 +1,25 @@
 {
-  // IntelliSense: let CMake Tools answer per-file, with the generated database as fallback.
+  // --- IntelliSense -------------------------------------------------------
+  // Primary: CMake Tools answers per-file from the configured build.
   "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
   "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-  "C_Cpp.default.cppStandard": "c++20",
 
+  // Safety net: used when neither of the above has answered yet (e.g. before the
+  // first configure). common/ holds drill_test.hpp; each day dir holds problem.h.
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/common",
+    "${workspaceFolder}/days/**"
+  ],
+  "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "C_Cpp.default.cppStandard": "c++20",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+
+  // --- CMake --------------------------------------------------------------
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "cmake.configureOnOpen": true,
 
+  // --- misc ---------------------------------------------------------------
   "files.associations": { "*.hpp": "cpp" },
   "C_Cpp.clang_format_style": "file",
   "editor.formatOnSave": false
